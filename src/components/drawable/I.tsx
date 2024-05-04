@@ -43,7 +43,7 @@ export default function I({ coordinates, winner }: IProps) {
   };
   return (
     <>
-      {winner?.length !== 0 && (
+      {winner?.length !== 0 && winner !== "draw" && (
         <motion.svg
           width="100%"
           height="100%"

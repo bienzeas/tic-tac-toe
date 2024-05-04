@@ -6,6 +6,7 @@ import useTicTacToeStore from "../../zustand/useTicTacToeStore";
 import { useEffect, useState } from "react";
 import checkWinner from "../../utils/checkWinner";
 import winCrossOrientation from "../../utils/winCrossOrientation";
+import WinnerPopup from "../popup/WinnerPopup";
 
 interface WinOrientation {
   x1: string;
@@ -15,7 +16,8 @@ interface WinOrientation {
 }
 
 export default function TicTacToeTable() {
-  const { grid, xTurn, addDrawable, xMoves, oMoves } = useTicTacToeStore();
+  const { grid, xTurn, addDrawable, xMoves, oMoves, reset } =
+    useTicTacToeStore();
 
   const [winner, setWinner] = useState("");
   const [winningCoordinates, setWinningCoordinates] = useState<WinOrientation>({
@@ -27,7 +29,6 @@ export default function TicTacToeTable() {
 
   const handleCheckWinner = (moves: number[]) => {
     const winnerArray = checkWinner(moves);
-
     if (winnerArray.length !== 0) {
       if (xTurn) {
         setWinningCoordinates(winCrossOrientation(winnerArray)!);
@@ -36,6 +37,9 @@ export default function TicTacToeTable() {
         setWinningCoordinates(winCrossOrientation(winnerArray)!);
         setWinner("x");
       }
+    }
+    if (winnerArray.length === 0 && xMoves.length + oMoves.length === 9) {
+      setWinner("draw");
     }
   };
 
@@ -50,33 +54,36 @@ export default function TicTacToeTable() {
   }, [xMoves, oMoves]);
 
   return (
-    <Grid
-      container
-      sx={{
-        width: { xs: "300px", sm: "600px" },
-        position: "relative",
-        border: { xs: "2.5px solid #EFEFEF", sm: "5px solid #EFEFEF" },
-      }}
-    >
-      <I winner={winner} coordinates={winningCoordinates} />
-      {grid.map((item) => (
-        <Grid
-          sx={{
-            height: { xs: "100px", sm: "200px" },
-            width: { xs: "100px", sm: "200px" },
-            border: { xs: "2.5px solid #EFEFEF", sm: "5px solid #EFEFEF" },
-            cursor: item.filled ? "not-allowed" : "pointer",
-          }}
-          item
-          xs={4}
-          key={item.coord}
-          onClick={() =>
-            item.filled ? null : addDrawable(item.coord, xTurn ? "x" : "o")
-          }
-        >
-          {item.filled ? item.drawable === "x" ? <X /> : <O /> : null}
-        </Grid>
-      ))}
-    </Grid>
+    <>
+      <Grid
+        container
+        sx={{
+          width: { xs: "300px", sm: "600px" },
+          position: "relative",
+          border: { xs: "2.5px solid #EFEFEF", sm: "5px solid #EFEFEF" },
+        }}
+      >
+        <I winner={winner} coordinates={winningCoordinates} />
+        {grid.map((item) => (
+          <Grid
+            sx={{
+              height: { xs: "100px", sm: "200px" },
+              width: { xs: "100px", sm: "200px" },
+              border: { xs: "2.5px solid #EFEFEF", sm: "5px solid #EFEFEF" },
+              cursor: item.filled ? "not-allowed" : "pointer",
+            }}
+            item
+            xs={4}
+            key={item.coord}
+            onClick={() =>
+              item.filled ? null : addDrawable(item.coord, xTurn ? "x" : "o")
+            }
+          >
+            {item.filled ? item.drawable === "x" ? <X /> : <O /> : null}
+          </Grid>
+        ))}
+      </Grid>
+      <WinnerPopup winner={winner} reset={reset} setWinner={setWinner} />
+    </>
   );
 }

@@ -1,13 +1,15 @@
 import { motion } from "framer-motion";
 import { ReactElement } from "react";
-import { Box, Typography, useTheme } from "@mui/material";
-
+import { Box, Tooltip, Typography, useTheme } from "@mui/material";
+import RestartAltTwoToneIcon from "@mui/icons-material/RestartAltTwoTone";
+import useTicTacToeStore from "../zustand/useTicTacToeStore";
 interface MainLayoutProps {
   children: ReactElement;
 }
 
 export default function MainLayout({ children }: MainLayoutProps) {
   const theme = useTheme();
+  const { reset } = useTicTacToeStore();
   return (
     <Box
       sx={{
@@ -26,9 +28,39 @@ export default function MainLayout({ children }: MainLayoutProps) {
         animate={{ x: 0 }}
         transition={{ type: "spring", damping: 10, stiffness: 100 }}
       >
-        <Typography variant="h1" fontWeight={600}>
-          TIC TAC TOE
-        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            gap: 3,
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: { xs: "column", sm: "row" },
+          }}
+        >
+          <Typography variant="h1" fontWeight={600}>
+            TIC TAC TOE
+          </Typography>
+          <motion.div
+            transition={{ type: "spring", damping: 10, stiffness: 100 }}
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.8 }}
+          >
+            <Typography
+              variant="h1"
+              fontWeight={600}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                cursor: "pointer",
+              }}
+              onClick={() => reset()}
+            >
+              <Tooltip title="Reset">
+                <RestartAltTwoToneIcon fontSize="inherit" />
+              </Tooltip>
+            </Typography>
+          </motion.div>
+        </Box>
       </motion.div>
       <motion.div
         initial={{ opacity: 0 }}
