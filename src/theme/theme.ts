@@ -3,7 +3,7 @@ import { createTheme, responsiveFontSizes } from "@mui/material";
 const baseTheme = createTheme({
   palette: {
     primary: {
-      main: "#2B2B2B",
+      main: "#222222",
     },
     secondary: {
       main: "#edf2ff",
@@ -20,8 +20,9 @@ const baseTheme = createTheme({
     MuiGrid: {
       styleOverrides: {
         root: {
-          border: "2.5px solid #EFEFEF",
-          filter: "drop-shadow(0px 0px 10px rgba(47, 204, 12, 1))",
+          border: "5px solid #EFEFEF",
+          boxShadow:
+            "inset 0 0 10px rgba(255, 255, 255, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.3)",
         },
       },
     },
