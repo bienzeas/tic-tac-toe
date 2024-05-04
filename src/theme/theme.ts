@@ -20,9 +20,8 @@ const baseTheme = createTheme({
     MuiGrid: {
       styleOverrides: {
         root: {
-          border: "5px solid #EFEFEF",
           boxShadow:
-            "inset 0 0 10px rgba(255, 255, 255, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.3)",
+            "inset 0 0 10px rgba(255, 255, 255, 0.5), inset 0 0 20px rgba(255, 255, 255, 1)",
         },
       },
     },
