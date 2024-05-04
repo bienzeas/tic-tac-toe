@@ -1,22 +1,28 @@
 import { ReactElement } from "react";
-import { Box } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 
 interface MainLayoutProps {
   children: ReactElement;
 }
 
 export default function MainLayout({ children }: MainLayoutProps) {
+  const theme = useTheme();
   return (
     <Box
       sx={{
         height: "100vh",
-        background: "#2B2B2B",
+        background: theme.palette.primary.main,
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
         alignItems: "center",
+        justifyContent: { xs: "center", sm: "flex-start" },
+        gap: 3,
+        padding: 3,
       }}
     >
+      <Typography variant="h1" fontWeight={600}>
+        TIC TAC TOE
+      </Typography>
       {children}
     </Box>
   );
