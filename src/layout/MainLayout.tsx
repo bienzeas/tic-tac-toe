@@ -12,6 +12,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
   const { reset } = useTicTacToeStore();
   return (
     <Box
+      data-testid="main-layout"
       sx={{
         height: "100vh",
         background: theme.palette.primary.main,
@@ -46,6 +47,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
             whileTap={{ scale: 0.8 }}
           >
             <Typography
+              data-testid="reset-button"
               variant="h1"
               fontWeight={600}
               sx={{

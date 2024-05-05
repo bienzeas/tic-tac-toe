@@ -40,5 +40,5 @@ const coordinatesMap: CoordinatesMap = {
 
 export default function winCrossOrientation(winCoord: Array<number>) {
   const key = winCoord.join("-");
-  return coordinatesMap[key] || null;
+  return coordinatesMap[key];
 }

@@ -1,6 +1,5 @@
 import { motion, MotionStyle } from "framer-motion";
 import { drawWin } from "../../utils/framer";
-import winCrossOrientation from "../../utils/winCrossOrientation";
 
 interface WinOrientation {
   x1: string;
@@ -45,6 +44,7 @@ export default function I({ coordinates, winner }: IProps) {
     <>
       {winner?.length !== 0 && winner !== "draw" && (
         <motion.svg
+          data-testid="tic-tac-toe-i"
           width="100%"
           height="100%"
           viewBox="0 0 200 200"

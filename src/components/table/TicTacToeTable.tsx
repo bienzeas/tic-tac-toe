@@ -51,11 +51,13 @@ export default function TicTacToeTable() {
         handleCheckWinner(xMoves);
       }
     }
+    // eslint-disable-next-line
   }, [xMoves, oMoves]);
 
   return (
     <>
       <Grid
+        data-testid="tic-tac-toe"
         container
         sx={{
           width: { xs: "300px", sm: "600px" },
@@ -66,6 +68,7 @@ export default function TicTacToeTable() {
         <I winner={winner} coordinates={winningCoordinates} />
         {grid.map((item) => (
           <Grid
+            data-testid={`tic-tac-toe-${item.coord}`}
             sx={{
               height: { xs: "100px", sm: "200px" },
               width: { xs: "100px", sm: "200px" },

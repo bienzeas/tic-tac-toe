@@ -1,10 +1,22 @@
 # Tic - Tac - Toe (NCS Technical Exam)
 
+This project "Tic Tac Toe" made use of the following libraries:
+
+- Material UI for theming / Customization
+- Zustand - For state management
+- Framer Motion - For various animations used in the project
+
 ## Needed scripts to run this project
 
-### `npm install`
+### `npm install` to download project dependencies
 
-# Getting Started with Create React App
+### `npm run start` to run project locally, Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+### `npm run test` to run unit tests for the project, Open terminal -> run npm run test script, wait for the unit test coverage to appear.
+
+# CRA README FILE
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

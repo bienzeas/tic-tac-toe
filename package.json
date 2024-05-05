@@ -2,6 +2,15 @@
   "name": "tic-tac-toe",
   "version": "0.1.0",
   "private": true,
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/App\\.tsx",
+      "/index\\.tsx",
+      "/reportWebVitals\\.ts",
+      "/theme\\.ts"
+    ]
+  },
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
@@ -25,7 +34,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

@@ -14,28 +14,26 @@ const useTicTacToeStore = create(
       addDrawable: (coord: number, drawable: string) =>
         set((state) => {
           const index = state.grid.findIndex((item) => item.coord === coord);
-          if (index !== -1) {
-            const updatedGrid = [...state.grid];
-            updatedGrid[index] = {
-              ...updatedGrid[index],
-              filled: true,
-              drawable,
+
+          const updatedGrid = [...state.grid];
+          updatedGrid[index] = {
+            ...updatedGrid[index],
+            filled: true,
+            drawable,
+          };
+          if (state.xTurn) {
+            return {
+              grid: updatedGrid,
+              xTurn: !state.xTurn,
+              xMoves: [...state.xMoves, coord],
             };
-            if (state.xTurn) {
-              return {
-                grid: updatedGrid,
-                xTurn: !state.xTurn,
-                xMoves: [...state.xMoves, coord],
-              };
-            } else {
-              return {
-                grid: updatedGrid,
-                xTurn: !state.xTurn,
-                oMoves: [...state.oMoves, coord],
-              };
-            }
+          } else {
+            return {
+              grid: updatedGrid,
+              xTurn: !state.xTurn,
+              oMoves: [...state.oMoves, coord],
+            };
           }
-          return state;
         }),
       reset: () =>
         set({ grid: initialGrid, xTurn: true, xMoves: [], oMoves: [] }),

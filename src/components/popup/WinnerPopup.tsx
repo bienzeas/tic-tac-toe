@@ -13,6 +13,7 @@ export default function WinnerPopup({
 }: WinnerPopupProps) {
   return (
     <Backdrop
+      data-testid="winner-popup"
       open={winner !== ""}
       onClick={() => {
         reset();
