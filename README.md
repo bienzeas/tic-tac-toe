@@ -1,4 +1,4 @@
-# Tic - Tac - Toe (NCS Technical Exam)
+# Tic - Tac - Toe 
 
 This project "Tic Tac Toe" made use of the following libraries:
 
